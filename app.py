@@ -1,3 +1,5 @@
+# 
+
 import streamlit as st
 import pandas as pd
 from parser_logic import parse
@@ -14,10 +16,10 @@ E → b
 user_input = st.text_input("Enter input string (e.g., ibtibea):")
 
 if user_input:
-    # 🔍 Compute first, follow, and parsing table dynamically
+    #  Compute first, follow, and parsing table 
     first, follow, parsing_table = get_first_follow_and_table()
 
-    # 🔠 FIRST Sets
+    #  FIRST Sets
     st.subheader("FIRST Sets")
     first_df = pd.DataFrame.from_dict(
         {nt: ', '.join(sorted(v)) for nt, v in first.items()},
@@ -26,7 +28,7 @@ if user_input:
     )
     st.dataframe(first_df)
 
-    # 🔠 FOLLOW Sets
+    # FOLLOW Sets
     st.subheader("FOLLOW Sets")
     follow_df = pd.DataFrame.from_dict(
         {nt: ', '.join(sorted(v)) for nt, v in follow.items()},
@@ -35,7 +37,7 @@ if user_input:
     )
     st.dataframe(follow_df)
 
-    # 📋 Parsing Table
+    #  Parsing Table
     st.subheader("Parsing Table")
     all_terminals = sorted({term for row in parsing_table.values() for term in row})
     table_df = pd.DataFrame(columns=all_terminals, index=parsing_table.keys())
@@ -45,7 +47,7 @@ if user_input:
             table_df.at[nt, terminal] = f"{nt} → {' '.join(prod) if prod else 'ε'}"
     st.dataframe(table_df.fillna(""))
 
-    # ▶️ Parsing Steps
+    #  Parsing Steps
     st.subheader("Parsing Steps")
     steps = parse(user_input)
     step_df = pd.DataFrame(steps)
