@@ -5,7 +5,7 @@ import pandas as pd
 st.title("LL(1) Predictive Parser")
 st.write("Grammar Used (After Left Factoring):")
 st.code("""
-S → iEtS X  
+S → iEtS X | a
 X → eS | ε  
 E → b
 """)
