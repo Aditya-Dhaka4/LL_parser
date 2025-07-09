@@ -5,8 +5,8 @@ import pandas as pd
 st.title("LL(1) Predictive Parser")
 st.write("Grammar Used (After Left Factoring):")
 st.code("""
-S → iEtS X | a
-X → eS | ε  
+S → iEtS S' | a
+S' → eS | ε  
 E → b
 """)
 
@@ -15,7 +15,7 @@ user_input = st.text_input("Enter input string (e.g., ibtibee):")
 if user_input:
     st.subheader("Parsing Table")
     table = get_parsing_table()
-    df = pd.DataFrame(columns=['i', 'b', 'e', '$'], index=['S', 'X', 'E'])
+    df = pd.DataFrame(columns=['i', 'b', 'e', '$'], index=['S', "S'", 'E'])
     for nt in table:
         for t in table[nt]:
             df.at[nt, t] = table[nt][t]

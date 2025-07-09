@@ -2,7 +2,7 @@
 
 parsing_table = {
     'S': {
-        'i': ['i', 'E', 't', 'S', 'X'],
+        'i': ['i', 'E', 't', 'S', "S'"],
         'a': ['a']
     },
     'X': {
@@ -62,7 +62,7 @@ def parse(input_string):
 
 def get_parsing_table():
     return {
-        "S": {"i": "S → iEtSX", "a": "S → a"},
-        "X": {"e": "X → eS", "$": "X → ε"},
+        "S": {"i": "S → iEtSS'", "a": "S → a"},
+        "S'": {"e": "S' → eS", "$": "S' → ε"},
         "E": {"b": "E → b"}
     }
